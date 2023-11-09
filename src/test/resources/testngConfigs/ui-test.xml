@@ -7,4 +7,9 @@
             <class name="ui.tests.LoginPageTest"/>
         </classes>
     </test>
+    <test name="Password reset page test">
+        <classes>
+            <class name="ui.tests.PasswordResetPageTest"/>
+        </classes>
+    </test>
 </suite>

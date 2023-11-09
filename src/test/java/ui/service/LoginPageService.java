@@ -26,13 +26,33 @@ public class LoginPageService {
         return loginPage.getLoginValidationMessage();
     }
 
-    @Step("Verifying if empty email validation message displayed")
+    @Step("Clicking 'Forgot password' button")
+    public PasswordResetPageService clickForgotPassword() {
+        loginPage = new LoginPage();
+        loginPage.openLoginPage()
+                .clickForgotPasswordButton();
+        return new PasswordResetPageService();
+    }
+
+    @Step("Checking if 'SSO Login page' opened")
+    public boolean isSsoLoginPageOpened() {
+        loginPage = new LoginPage();
+        return loginPage.isSsoLoginPageOpened();
+    }
+
+    @Step("Checking if 'Login page' opened")
+    public boolean isLoginPageOpened() {
+        loginPage = new LoginPage();
+        return loginPage.isLoginPageOpened();
+    }
+
+    @Step("Checking if empty email validation message displayed")
     public boolean isEmptyEmailValidationMessageDisplayed() {
         loginPage = new LoginPage();
         return loginPage.isEmptyFieldValidationMessageDisplayed("email");
     }
 
-    @Step("Verifying if empty password validation message displayed")
+    @Step("Checking if empty password validation message displayed")
     public boolean isEmptyPasswordValidationMessageDisplayed() {
         loginPage = new LoginPage();
         return loginPage.isEmptyFieldValidationMessageDisplayed("password");

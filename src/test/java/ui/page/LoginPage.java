@@ -32,6 +32,9 @@ public class LoginPage extends BasePage {
     @FindBy(xpath = "//h1[contains(text(),'SSO Login')]")
     private WebElement loginSsoPageHeading;
 
+    @FindBy(xpath = "//a[contains(text(),'Forgot password?')]")
+    private WebElement forgotPasswordButton;
+
     public LoginPage fillEmail(String userName) {
         log.info("Fill 'Email' field");
         Waiter.waitElementToBeDisplayed(emailField).sendKeys(userName);
@@ -64,9 +67,15 @@ public class LoginPage extends BasePage {
     }
 
     public LoginPage openLoginPage() {
-        log.info("Open 'Login' ui.page");
+        log.info("Open 'Login' page");
         DriverSingleton.getInstance().getDriver().get(LOGIN_PAGE_URL);
         return this;
+    }
+
+    public PasswordResetPage clickForgotPasswordButton() {
+        log.info("Click 'Forgot password' button");
+        Waiter.waitElementToBeDisplayed(forgotPasswordButton).click();
+        return new PasswordResetPage();
     }
 
     public boolean isLoginPageOpened() {
@@ -75,11 +84,5 @@ public class LoginPage extends BasePage {
 
     public boolean isSsoLoginPageOpened() {
         return Waiter.waitElementToBeDisplayed(loginSsoPageHeading).isDisplayed();
-    }
-
-    public LoginPage clickOnAdditionalLinkByName(String name) {
-        log.info(String.format("Click on additional link by name '%s'", name));
-        Waiter.waitElementToBeDisplayedByLocator(By.xpath(String.format(ADDITIONAL_LINK, name))).click();
-        return this;
     }
 }
