@@ -20,16 +20,16 @@ public class LoginPageTest extends BaseTest {
         loginPageService = new LoginPageService();
     }
 
-    @Test(description = "Verify successful login with valid credentials")
+    @Test(description = "Check successful login with valid credentials")
     @Description("Login with valid credentials")
-    public void verifySuccessfulLoginWithValidCredentials() {
+    public void checkSuccessfulLoginWithValidCredentials() {
         ProjectsListPageService projectsListPageService = loginPageService.login(new User());
         Assert.assertTrue(projectsListPageService.isProjectsPageDisplayed(), "Login failed");
     }
 
-    @Test(description = "Verify wrong email validation")
+    @Test(description = "Check wrong email validation")
     @Description("Wrong email validation")
-    public void verifyWrongEmailValidation() {
+    public void checkWrongEmailValidation() {
         User userWithWrongEmail = new User("testEmail@mail.ru", "PasswordTesting9*");
         loginPageService.login(userWithWrongEmail);
         String actualValidationMessage = loginPageService.getLoginValidationMessage();
@@ -38,27 +38,27 @@ public class LoginPageTest extends BaseTest {
                 "match expected");
     }
 
-    @Test(description = "Verify empty email validation")
+    @Test(description = "Check empty email validation")
     @Description("Empty email validation")
-    public void verifyEmptyEmailValidation() {
+    public void checkEmptyEmailValidation() {
         User userWithEmptyEmail = new User("", "PasswordTesting9*");
         loginPageService.login(userWithEmptyEmail);
         Assert.assertTrue(loginPageService.isEmptyEmailValidationMessageDisplayed(), "Empty email " +
                 "validation message hasn't been shown");
     }
 
-    @Test(description = "Verify empty password validation")
+    @Test(description = "Check empty password validation")
     @Description("Empty password validation")
-    public void verifyEmptyPasswordValidation() {
+    public void checkEmptyPasswordValidation() {
         User userWithEmptyPassword = new User("nufolyge@yogrow.co", "");
         loginPageService.login(userWithEmptyPassword);
         Assert.assertTrue(loginPageService.isEmptyPasswordValidationMessageDisplayed(), "Empty password " +
                 "validation message hasn't been shown");
     }
 
-    @Test(description = "Verify wrong email format validation", dataProvider = "Wrong format emails list")
+    @Test(description = "Check wrong email format validation", dataProvider = "Get wrong format emails list")
     @Description("Wrong email format validation")
-    public void verifyWrongEmailFormatValidation(String email) {
+    public void checkWrongEmailFormatValidation(String email) {
         User userWithWrongFormatEmail = new User(email);
         loginPageService.login(userWithWrongFormatEmail);
         String actualValidationMessage = loginPageService.getWrongEmailFormatValidationMessage();
@@ -68,8 +68,8 @@ public class LoginPageTest extends BaseTest {
                 "match expected");
     }
 
-    @DataProvider(name = "Wrong format emails list")
-    public static Object[][] wrongFormatEmailsList() {
+    @DataProvider(name = "Get wrong format emails list")
+    private static Object[][] getWrongFormatEmailsList() {
         return new Object[][]{
                 {"abc.def@mail#archive.com"},
                 {"abc..def@mail.com"},

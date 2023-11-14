@@ -47,10 +47,9 @@ public class LoginPage extends BasePage {
         return this;
     }
 
-    public ProjectsListPage clickLoginButton() {
+    public void clickLoginButton() {
         log.info("Click 'Login' button");
         loginButton.click();
-        return new ProjectsListPage();
     }
 
     public String getLoginValidationMessage() {
@@ -72,10 +71,9 @@ public class LoginPage extends BasePage {
         return this;
     }
 
-    public PasswordResetPage clickForgotPasswordButton() {
+    public void clickForgotPasswordButton() {
         log.info("Click 'Forgot password' button");
         Waiter.waitElementToBeDisplayed(forgotPasswordButton).click();
-        return new PasswordResetPage();
     }
 
     public boolean isLoginPageOpened() {
