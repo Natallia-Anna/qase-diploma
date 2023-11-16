@@ -9,7 +9,7 @@ import ui.driver.DriverSingleton;
 import java.time.Duration;
 
 public class Waiter {
-    private final static int WAIT_30_SECONDS = 1;
+    private final static int WAIT_30_SECONDS = 30;
 
     private Waiter() {
     }
@@ -20,7 +20,7 @@ public class Waiter {
     }
 
     public static WebElement waitElementToBeDisplayed(WebElement element) {
-        return new WebDriverWait(DriverSingleton.getInstance().getDriver(), Duration.ofMinutes(WAIT_30_SECONDS))
+        return new WebDriverWait(DriverSingleton.getInstance().getDriver(), Duration.ofSeconds(WAIT_30_SECONDS))
                 .until(ExpectedConditions.visibilityOf(element));
     }
 }
