@@ -15,7 +15,7 @@ public class Waiter {
     }
 
     public static WebElement waitElementToBeDisplayedByLocator(By locator) {
-        return new WebDriverWait(DriverSingleton.getInstance().getDriver(), Duration.ofMinutes(WAIT_30_SECONDS))
+        return new WebDriverWait(DriverSingleton.getInstance().getDriver(), Duration.ofSeconds(WAIT_30_SECONDS))
                 .until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
